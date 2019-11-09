@@ -25,7 +25,23 @@ void dump_characters(void *databuf) {
  */
 int get_emps(char *table, void *data) {
     /* Your implementation should appear here */
-
+    while(*(char *)data != '\0'){
+        long id = *(long *)data;
+        sprintf(table, "%ld,", id);
+        data = data + sizeof(long);
+        table = table + strlen(table);
+        for(int n = 0; n < 4; n++){
+            strcpy(table, data);
+            table = table + strlen(table);
+            *table++ = ',';
+            data = data + MAX_STRING_SIZE;
+        }
+        long sal = *(long *)data;
+        sprintf(table, "%ld", sal);
+        data = data + sizeof(long);
+        table = table + strlen(table);
+        *table++ = '\n';
+    }
     return 0;
 }
 
